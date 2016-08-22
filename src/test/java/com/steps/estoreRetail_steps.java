@@ -17,7 +17,7 @@ public class estoreRetail_steps {
 			}
 	@Given("^user  entered the URL on web browser \"([^\"]*)\"$")
 	public void user_entered_the_URL_on_web_browser(String url) throws Throwable {
-	    
+	    driver.get(url);
 	  
 	}
 

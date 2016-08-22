@@ -58,8 +58,7 @@ public class Base extends PropertyReader{
 
 	@After
 	public void EndTest() {
-		driver.quit();
-		logger.info("driver closed");
 
+		
 	}
 }
