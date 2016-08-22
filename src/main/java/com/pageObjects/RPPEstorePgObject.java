@@ -56,7 +56,6 @@ public class RPPEstorePgObject {
  public String getName(String value){
 	 
 	 WebElement nametxt=driver.findElement(By.xpath("id('hlListProductProdName')[.='" + value + "']"));
-	   new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated( By.xpath("id('hlListProductProdName')[.='" + value + "']") ));
 	 return nametxt.getText();
  }
  public String getImage(){
