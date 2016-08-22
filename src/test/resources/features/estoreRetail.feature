@@ -20,8 +20,10 @@ Scenario Outline: ES03
 Given user click on the Shop button
 When user should be able to see pop up message with Exit link
 And user click on the Exit  link
-Then user should be direct to the home page again
-
+Then user should be direct to the home page again "<url>"
+Examples:
+|url|
+|http://www.qnet.net/|
 
 @Reg
 Scenario Outline: ES02
@@ -38,26 +40,26 @@ Scenario Outline: ES05
 Given user should be able to see purchasing path of e store top corner of the page
 When user already in verify referrer page
 Then user should be able to see Verify referrer radio button is selected by default loading the page "<img>"
+And user can see default page loading with the English on language drop down
 Examples:
 |img|
 |images/EN/navretEN_01.jpg|
 
 @Reg
-Scenario Outline: ES05
-Given user can see default page loading with the English on language drop down
-When user can be change the language "<language_drop>"
-Then user can be view page content  with corresponding language "<language>"
+Scenario Outline: ES05 
+Given user can be change the language "<language>"
+When user can be view page content  with corresponding language "<language>"
 Examples:
-|language_drop|language|
-|ar|ar|
-|en|en|
-|es|es|
-|fa|fa|
-|fr|fr|
-|id|id|
-|pt|pt|
-|ru|ru|
-|zh|zh|
+|language|
+|ar|
+|en|
+|es|
+|fa|
+|fr|
+|id|
+|pt|
+|ru|
+|zh|
 
 
 
