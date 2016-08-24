@@ -46,7 +46,7 @@ Examples:
 |images/EN/navretEN_01.jpg|
 
 @Reg
-Scenario Outline: ES05 
+Scenario Outline: ES06
 Given user can be change the language "<language>"
 When user can be view page content  with corresponding language "<language>"
 Examples:
@@ -60,12 +60,56 @@ Examples:
 |pt|
 |ru|
 |zh|
+|en|
 
+@Reg
+Scenario: ES08.1
+Given user can see no any country selected on the drop down when default loading page.
 
+@Reg
+Scenario: ES012
+Given user click on the link
+When should be displayed notification error message 
+@Reg
+Scenario Outline: ES08.2
+Given user should be able to select any country in WP through the country drop down list "<wpcountry>"
+Examples:
+|wpcountry|
+|AF|
+|AL|
+|DZ|
 
+@Reg
+Scenario Outline: ES08.3 & ES010
+Given user select the available country through country drop down list. "<country>"
+When user should not allow to click on Shop Now button.
+And user should be able to click on Check referrer button
+Then user should not direct any page form the existing page "<url>"
+Examples:
+|country|url|
+|AU|https://portal.qnet.net/eStore4/verifyreferrer.aspx?language=en|
 
+@Reg
+Scenario Outline: ES09
+Given user can not see any local plan countries in country drop down "<localcountry>"
+Examples:
+|localcountry|
+|GL|
 
+@Reg
+Scenario Outline: ES013
+Given user click on the available link which regarding entered product page
+When should be direct to the product page on same window "<url>"
+Examples:
+|url|
+|https://portal.qnet.net/eStore4/products.aspx?Category=5011000&type=#|
 
-
-
-
+@Reg
+Scenario: ES014
+Given user directs to the products page 
+When user select the preferred language from dropdown
+And products radio button is highlighted
+Then user can filter the products via dropdown 
+And default selected category is Health and wellness
+And user can filter the products by product brand 
+And 2 add to cart buttons available  

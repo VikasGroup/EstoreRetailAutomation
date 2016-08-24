@@ -1,15 +1,19 @@
 package com.steps;
 
+import org.hamcrest.core.IsEqual;
+import org.hamcrest.core.IsNot;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 import com.base.Base;
 import com.pageObjects.HomePgObject;
+import com.pageObjects.ProductPgObject;
 import com.pageObjects.ReferrerdetailPgObject;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import junit.framework.Assert;
+
 import utils.TabCatcher;
 
 public class estoreRetail_steps {
@@ -136,5 +140,106 @@ public class estoreRetail_steps {
 	public void user_can_be_view_page_content_with_corresponding_language(String lang) throws Throwable {
 		 Assert.assertEquals("Language Validation", lang,referrerdetailPgObject.getTextLanguage());
 	}
+	@Given("^user can see no any country selected on the drop down when default loading page\\.$")
+	public void user_can_see_no_any_country_selected_on_the_drop_down_when_default_loading_page() throws Throwable {
+		referrerdetailPgObject=new ReferrerdetailPgObject();
+		Assert.assertEquals("Default country validation", "Select Country",referrerdetailPgObject.getDefaultCountry());
+	}
+	@Given("^user click on the link$")
+	public void user_click_on_the_link() throws Throwable {
+		referrerdetailPgObject=new ReferrerdetailPgObject();
+		referrerdetailPgObject.clickLink();
+	}
+
+	@When("^should be displayed notification error message$")
+	public void should_be_displayed_notification_error_message() throws Throwable {
+	    Assert.assertEquals("Error Msg Validation", "Please select your country of residence.", referrerdetailPgObject.getErrorMsg());
+	}
+	@Given("^user should be able to select any country in WP through the country drop down list \"([^\"]*)\"$")
+	public void user_should_be_able_to_select_any_country_in_WP_through_the_country_drop_down_list(String country) throws Throwable {
+		referrerdetailPgObject=new ReferrerdetailPgObject();
+		referrerdetailPgObject.setCountry(country);
+		Thread.sleep(5000);
+	}
+	@Given("^user select the available country through country drop down list\\. \"([^\"]*)\"$")
+	public void user_select_the_available_country_through_country_drop_down_list(String country) throws Throwable {
+		referrerdetailPgObject=new ReferrerdetailPgObject();
+		referrerdetailPgObject.setCountry(country);
+		Thread.sleep(8000);
+	}
+
+	@When("^user should not allow to click on Shop Now button\\.$")
+	public void user_should_not_allow_to_click_on_Shop_Now_button() throws Throwable {
+		 Assert.assertEquals("ShopNow button Validation", "false",referrerdetailPgObject.checkShopNowbtn());
+	}
+	@When("^user should be able to click on Check referrer button$")
+	public void user_should_be_able_to_click_on_Check_referrer_button() throws Throwable {
+		referrerdetailPgObject.clickCheckReferrer();
+	}
+	@Then("^user should not direct any page form the existing page \"([^\"]*)\"$")
+	public void user_should_not_direct_any_page_form_the_existing_page(String url) throws Throwable {
+	   Assert.assertEquals(url, driver.getCurrentUrl());
+	}
+	
+	@Given("^user can not see any local plan countries in country drop down \"([^\"]*)\"$")
+	public void user_can_not_see_any_local_plan_countries_in_country_drop_down(String localcountry) throws Throwable {
+		referrerdetailPgObject=new ReferrerdetailPgObject();
+		String [] cou=referrerdetailPgObject.getCountry();
+		int i=0;
+		System.out.println("yyyyy"+cou.length);
+		while(i<cou.length){
+			Assert.assertThat(localcountry, IsNot.not(IsEqual.equalTo(cou[i])));
+			i++;
+		}
+		System.out.println("Count "+ i);
+	}
+	@Given("^user click on the available link which regarding entered product page$")
+	public void user_click_on_the_available_link_which_regarding_entered_product_page() throws Throwable {
+		referrerdetailPgObject=new ReferrerdetailPgObject();
+		referrerdetailPgObject.clickLink();
+	}
+	@When("^should be direct to the product page on same window \"([^\"]*)\"$")
+	public void should_be_direct_to_the_product_page_on_same_window(String url) throws Throwable {
+	   Assert.assertEquals("Product Page Validation", url, driver.getCurrentUrl());
+	   ProductPgObject productPgObject=new ProductPgObject();
+	   
+	}
+	@Given("^user directs to the products page$")
+	public void user_directs_to_the_products_page() throws Throwable {
+	    
+	}
+
+	@When("^user select the preferred language from dropdown$")
+	public void user_select_the_preferred_language_from_dropdown() throws Throwable {
+	    
+	}
+
+	@When("^products radio button is highlighted$")
+	public void products_radio_button_is_highlighted() throws Throwable {
+	    
+	}
+
+	@Then("^user can filter the products via dropdown$")
+	public void user_can_filter_the_products_via_dropdown() throws Throwable {
+	   
+	}
+
+	@Then("^default selected category is Health and wellness$")
+	public void default_selected_category_is_Health_and_wellness() throws Throwable {
+	   
+	}
+
+	@Then("^user can filter the products by product brand$")
+	public void user_can_filter_the_products_by_product_brand() throws Throwable {
+	  
+	}
+
+	@Then("^(\\d+) add to cart buttons available$")
+	public void add_to_cart_buttons_available(int arg1) throws Throwable {
+	    
+	}
+	
+	
+	
 
 }
