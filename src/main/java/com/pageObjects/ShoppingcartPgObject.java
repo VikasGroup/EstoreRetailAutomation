@@ -1,6 +1,7 @@
 package com.pageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -11,7 +12,7 @@ import com.steps.estoreRetail_steps;
 
 public class ShoppingcartPgObject {
  WebDriver driver=estoreRetail_steps.driver;
- 
+ public WebElement purchasingPathimg=driver.findElement(By.id("Topnav1_imgHeader"));
  public WebElement donation_txt  = driver.findElement(By.xpath(".//*[@id='txtRFDonation']"));
  public WebElement donation_check = driver.findElement(By.xpath(".//*[@id='chkRFDonation']"));
  public WebElement TandC_check = driver.findElement(By.xpath(".//*[@id='chkAgree']"));
@@ -20,7 +21,7 @@ public class ShoppingcartPgObject {
  public WebElement add_btn = driver.findElement(By.xpath(".//*[@id='cmdShop']"));
  public WebElement empty_btn = driver.findElement(By.xpath(".//*[@id='cmdSave']"));
  public WebElement check_btn = driver.findElement(By.xpath(".//*[@id='cmdConfirm']"));
- public WebElement rpp_text = driver.findElement(By.xpath(".//*[@id='pnlAutoShip']/span/label"));
+ //public WebElement rpp_text = driver.findElement(By.xpath(".//*[@id='pnlAutoShip']/span/label"));
  
 
  public String getProdName(int i){
@@ -43,21 +44,16 @@ public class ShoppingcartPgObject {
 	 WebElement price = (driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_lblPrice")));
 	 return price.getText();
  }
- public String getBV(int i){
+ public void deleteItem(int i){
 	 i=i+1;
-	 WebElement bv = (driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_lblCUV")));
-	 return bv.getText();
+	 WebElement delete = (driver.findElement(By.id("dlProductCategoryContainer_ctl03_dgProductCategory_ctl0"+i+"_lbtnDelete")));
+	delete.click();
  }
- public String getRSP(int i){
-	 i=i+1;
-	 WebElement rsp = (driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_lblDSP")));
-	 return rsp.getText();
- }
- public void selectRPP(int i,String value){
-	 i=i+1;
-	 Select rppf = new Select(driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_ddlRepeatProduct")));
-	 rppf.selectByVisibleText(value);
- }
+ public String getShoppingCartRadiobtn(){
+	  String src = ((JavascriptExecutor)driver).executeScript("return arguments[0].attributes['src'].value;", purchasingPathimg).toString();
+	  return src;
+	 }
+ 
  public void selectQTY(int i,String value) throws InterruptedException{
 	 i=i+1;
 	 WebElement qty = (driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_tbQuantity")));
@@ -86,6 +82,7 @@ public class ShoppingcartPgObject {
  public void clickEmpty(){
  empty_btn.click(); 
  }
+ 
  public void clickAdd(){
   add_btn.click();
  }

@@ -9,6 +9,7 @@ import com.base.Base;
 import com.pageObjects.HomePgObject;
 import com.pageObjects.ProductPgObject;
 import com.pageObjects.ReferrerdetailPgObject;
+import com.pageObjects.ShoppingcartPgObject;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -21,6 +22,8 @@ public class estoreRetail_steps {
 	public Base base;
 	public HomePgObject homePgObject;
 	ReferrerdetailPgObject referrerdetailPgObject;
+	ProductPgObject productPgObject;
+	ShoppingcartPgObject shoppingcartPgObject;
 	public estoreRetail_steps (Base base){
 		this.base = base;
 		this.driver=base.getDriver();
@@ -201,45 +204,188 @@ public class estoreRetail_steps {
 	@When("^should be direct to the product page on same window \"([^\"]*)\"$")
 	public void should_be_direct_to_the_product_page_on_same_window(String url) throws Throwable {
 	   Assert.assertEquals("Product Page Validation", url, driver.getCurrentUrl());
-	   ProductPgObject productPgObject=new ProductPgObject();
+	    
 	   
 	}
 	@Given("^user directs to the products page$")
 	public void user_directs_to_the_products_page() throws Throwable {
+		 productPgObject=new ProductPgObject();
+	}
+	
+	@When("^user select the preferred language from dropdown \"([^\"]*)\"$")
+	public void user_select_the_preferred_language_from_dropdown(String language) throws Throwable {
+		productPgObject.setLanguage(language);
+		Thread.sleep(5000);
+	}
+
+	@When("^products radio button is highlighted \"([^\"]*)\"$")
+	public void products_radio_button_is_highlighted(String src) throws Throwable {
+	    Assert.assertEquals("Product Radio Button Validation", src, productPgObject.getProductsRadiobtn());
 	    
 	}
 
-	@When("^user select the preferred language from dropdown$")
-	public void user_select_the_preferred_language_from_dropdown() throws Throwable {
-	    
+	@Given("^user can filter the products via dropdown \"([^\"]*)\"$")
+	public void user_can_filter_the_products_via_dropdown(String category) throws Throwable {
+		productPgObject=new ProductPgObject();
+		productPgObject.setProduct(category);
+	    Thread.sleep(10000);
 	}
 
-	@When("^products radio button is highlighted$")
-	public void products_radio_button_is_highlighted() throws Throwable {
-	    
-	}
-
-	@Then("^user can filter the products via dropdown$")
-	public void user_can_filter_the_products_via_dropdown() throws Throwable {
-	   
-	}
-
-	@Then("^default selected category is Health and wellness$")
+	@Given("^default selected category is Health and wellness$")
 	public void default_selected_category_is_Health_and_wellness() throws Throwable {
-	   
-	}
-
-	@Then("^user can filter the products by product brand$")
-	public void user_can_filter_the_products_by_product_brand() throws Throwable {
-	  
-	}
-
-	@Then("^(\\d+) add to cart buttons available$")
-	public void add_to_cart_buttons_available(int arg1) throws Throwable {
+		productPgObject=new ProductPgObject();
+	    Assert.assertEquals("Default Category Validation", "underline",productPgObject.getCSS());
 	    
 	}
+
+	@When("^add to cart buttons available$")
+	public void add_to_cart_buttons_available() throws Throwable {
+	   Assert.assertEquals("Add to Cart Button Validation", "true", productPgObject.getAddtoCartStatus());
+	}
+
+	@Given("^user select the search option  \"([^\"]*)\"$")
+	public void user_select_the_search_option(String option) throws Throwable {
+		productPgObject=new ProductPgObject();
+		productPgObject.setProduct(option);
+	    
+	}
+
+	@When("^user enter a negative key word \"([^\"]*)\"$")
+	public void user_enter_a_negative_key_word(String product) throws Throwable {
+		productPgObject.enterSearch(product);
+	    
+	}
+
+	@Then("^click on search button$")
+	public void click_on_search_button() throws Throwable {
+		productPgObject.clicksearch(); 
+		 Thread.sleep(5000);
+	}
+	@Then("^Validate error message \"([^\"]*)\"$")
+	public void validate_error_message(String msg) throws Throwable {
+	   Assert.assertEquals("Error message validation", msg, productPgObject.getErrorMsg());
+	   Thread.sleep(5000);
+	}
+
+
+	@Given("^user select the search option as  Product name/brand\"([^\"]*)\"$")
+	public void user_select_the_search_option_as_Product_name_brand(String option) throws Throwable {
+		productPgObject=new ProductPgObject();
+		productPgObject.setProduct(option);
+		
+	    
+	}
+
+	@When("^user enter a key word \"([^\"]*)\"$")
+	public void user_enter_a_key_word(String product) throws Throwable {
+		productPgObject.enterSearch(product);
+		
+	    
+	}
+	@When("^click on searchbutton$")
+	public void click_on_searchbutton() throws Throwable {
+		productPgObject.clicksearch();
+		Thread.sleep(5000);
+	}
 	
+
+	@Then("^verify on product name \"([^\"]*)\"$")
+	public void verify_on_product_name(String name) throws Throwable {
+	    Assert.assertEquals("Product Name Validation", name, productPgObject.getName(name));
+	    
+	}
+
+	@Then("^verify on image \"([^\"]*)\"$")
+	public void verify_on_image(String image) throws Throwable {
+		// Assert.assertEquals("Product Name Image", name, productPgObject.getName(name));
+	    
+	}
+
+	@Then("^verify on Retail price \"([^\"]*)\"$")
+	public void verify_on_Retail_price(String price) throws Throwable {
+		 Assert.assertEquals("Product Price Validation", price, productPgObject.getPrice(price));
+	    
+	}
+
+	@Then("^verify on S&H fee \"([^\"]*)\"$")
+	public void verify_on_S_H_fee(String sh) throws Throwable {
+		 Assert.assertEquals("Product SH Validation", sh, productPgObject.getSH(sh));
+	    
+	}
+
+	@Then("^verify on Avalability \"([^\"]*)\"$")
+	public void verify_on_Avalability(String availability) throws Throwable {
+		 Assert.assertEquals("Product Availability Validation", availability, productPgObject.getAvalability());
+	}
+
+	@Then("^user select preferred products$")
+	public void user_select_preferred_products() throws Throwable {
+		if(productPgObject.getAvalability().equals("true"))
+			productPgObject.clickCheckBox();
+			else{
+				System.out.println(" Not available");
+			}
+	}
+	@Given("^user can click on add to cart button$")
+	public void user_can_click_on_add_to_cart_button() throws Throwable {
+		productPgObject=new ProductPgObject();
+		productPgObject.addcart_btn();
+		Thread.sleep(5000);
+	}
+
+	@Given("^user clicks on delete product button \"([^\"]*)\"$")
+	public void user_clicks_on_delete_product_button(String item) throws Throwable {
+		shoppingcartPgObject= new ShoppingcartPgObject();
+		shoppingcartPgObject.deleteItem(Integer.parseInt(item));
+		Thread.sleep(5000);
+	}
+
+@When("^user clicks on empty cart button$")
+public void user_clicks_on_empty_cart_button() throws Throwable {
+	shoppingcartPgObject.clickEmpty();
+    
+}
+
+@Then("^directs to the  products page$")
+public void directs_to_the_products_page() throws Throwable {
+    
+    Assert.assertEquals("Product Page validation", "https://portal.qnet.net/eStore4/products.aspx?Category=5011000", driver.getCurrentUrl());
+}
+
+@Given("^User click on Add products button$")
+public void user_click_on_Add_products_button() throws Throwable {
+	shoppingcartPgObject= new ShoppingcartPgObject();
+	shoppingcartPgObject.clickAdd();
+}
+
+
+@Given("^user directs to the Shopping cart page$")
+public void user_directs_to_the_Shopping_cart_page() throws Throwable {
+	shoppingcartPgObject= new ShoppingcartPgObject();
+	Assert.assertEquals("Shoppingcart Page validation", "https://portal.qnet.net/eStore4/shoppingcart.aspx#no-back-button", driver.getCurrentUrl());
+
+    
+}
+
+@When("^shopping cart radio button is highlighted \"([^\"]*)\"$")
+public void shopping_cart_radio_button_is_highlighted(String src) throws Throwable {
+	Assert.assertEquals("Shopping card radio btn validation", src,shoppingcartPgObject.getShoppingCartRadiobtn());
+}
+
+
+
+@When("^enter the qty for each product \"([^\"]*)\" , \"([^\"]*)\"$")
+public void enter_the_qty_for_each_product(String item, String qty) throws Throwable {
+	shoppingcartPgObject.selectQTY(Integer.parseInt(item), qty);
+    
+}
+
+@Then("^verify Price change \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\"$")
+public void verify_Price_change(String item, String price, String qty) throws Throwable {
+	Assert.assertEquals("Validate Price", qty+" x "+price+".00",shoppingcartPgObject.getPrice(Integer.parseInt(item)));
 	
-	
+    
+}
+
 
 }

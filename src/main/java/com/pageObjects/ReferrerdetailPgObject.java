@@ -38,6 +38,7 @@ WebElement clickherelink=webDriver.findElement(By.xpath(".//*[@id='lbClickShop']
  public void clickLink(){
 	 clickherelink.click();
  }
+
  public String getErrorMsg(){
 	 WebElement error=webDriver.findElement(By.xpath(".//*[@id='lblError']"));
 	 return error.getText();

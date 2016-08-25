@@ -53,14 +53,8 @@ Examples:
 |language|
 |ar|
 |en|
-|es|
-|fa|
-|fr|
-|id|
-|pt|
-|ru|
-|zh|
-|en|
+
+
 
 @Reg
 Scenario: ES08.1
@@ -105,11 +99,125 @@ Examples:
 |https://portal.qnet.net/eStore4/products.aspx?Category=5011000&type=#|
 
 @Reg
-Scenario: ES014
+Scenario Outline: ES014.1
 Given user directs to the products page 
-When user select the preferred language from dropdown
-And products radio button is highlighted
-Then user can filter the products via dropdown 
-And default selected category is Health and wellness
-And user can filter the products by product brand 
-And 2 add to cart buttons available  
+When user select the preferred language from dropdown "<lang>"
+And products radio button is highlighted "<src>"
+Examples:
+|lang|src|
+|ar|images/AR/navretAR_02.jpg|
+|en|images/EN/navretEN_02.jpg|
+
+
+
+@Reg
+Scenario Outline: ES014.2
+Given user can filter the products via dropdown "<category>"
+Examples:
+|category|
+|Brand|
+|DeliveryMode|
+|Price|
+|ProdName|
+
+@Reg
+Scenario: ES014.3
+Given default selected category is Health and wellness
+When add to cart buttons available
+
+@Reg
+Scenario Outline: ES016
+Given user select the search option  "<option>"
+When user enter a negative key word "<product>"
+Then click on search button 
+And Validate error message "<msg>"
+Examples:
+|option|product|msg|
+|ProdName|xxxxxxx|No Search result found!|
+
+@Reg
+Scenario Outline: ES019-023
+Given user select the search option as  Product name/brand"<type>"
+When user enter a key word "<prodName>"
+And click on searchbutton 
+Then verify on product name "<prodName>"
+And verify on image "<image>"
+And verify on Retail price "<price>"
+And verify on S&H fee "<sh>"
+And verify on Avalability "<avalability>"
+And user select preferred products 
+Examples:
+|type|prodName|image|price|sh|avalability|
+|ProdName|HomePure Alkaline Stick|true|USD 85.00|USD 10.00|true|
+|ProdName|REAL Water Lifestyle Super Combo|true|USD 1,360.00|USD 67.00|true|
+
+@Reg
+Scenario: ES024
+Given user can click on add to cart button
+
+
+
+@Reg
+Scenario Outline: ES028&27
+Given user clicks on delete product button "<item>" 
+When user clicks on empty cart button
+Then directs to the  products page 
+Examples:
+|item|
+|1|
+
+
+
+@Reg
+Scenario Outline: ES019-023
+Given user select the search option as  Product name/brand"<type>"
+When user enter a key word "<prodName>"
+And click on searchbutton 
+Then verify on product name "<prodName>"
+And verify on image "<image>"
+And verify on Retail price "<price>"
+And verify on S&H fee "<sh>"
+And verify on Avalability "<avalability>"
+And user select preferred products 
+Examples:
+|type|prodName|image|price|sh|avalability|
+|ProdName|HomePure Alkaline Stick|true|USD 85.00|USD 10.00|true|
+
+@Reg
+Scenario: ES024
+Given user can click on add to cart button
+
+@Reg
+Scenario: ES024
+Given User click on Add products button
+
+@Reg
+Scenario Outline: ES019-023
+Given user select the search option as  Product name/brand"<type>"
+When user enter a key word "<prodName>"
+And click on searchbutton 
+Then verify on product name "<prodName>"
+And verify on image "<image>"
+And verify on Retail price "<price>"
+And verify on S&H fee "<sh>"
+And verify on Avalability "<avalability>"
+And user select preferred products 
+Examples:
+|type|prodName|image|price|sh|avalability|
+|ProdName|REAL Water Lifestyle Super Combo|true|USD 1,360.00|USD 67.00|true|
+
+
+@Reg
+Scenario: ES024
+Given user can click on add to cart button 
+
+@Reg
+Scenario Outline: ES025
+Given user directs to the Shopping cart page
+When shopping cart radio button is highlighted "<src>"
+And enter the qty for each product "<item>" , "<qty>"
+Then verify Price change "<item>" , "<price>" , "<qty>"
+Examples:
+|item|prodName|qty|price|src|
+|1|HomePure Alkaline Stick|2|85|images/EN/navretEN_03.jpg|
+|2|REAL Water Lifestyle Super Combo|2|1,360|images/EN/navretEN_03.jpg|
