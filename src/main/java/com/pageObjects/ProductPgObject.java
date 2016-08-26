@@ -47,6 +47,7 @@ public class ProductPgObject {
 		  else
 		   return "false";
  }
+ 
  public void clickCheckBox(){
 	  WebElement RPP_btn = webDriver.findElement(By.xpath("(//input[@type='checkbox'])[position()=1]"));
 	  RPP_btn.click();

@@ -60,5 +60,22 @@ public class TabCatcher {
 			driver.switchTo().window((String) set.toArray()[0]);
 			
 	}
+	public void setBaseTabTnC(){
+		WebDriver driver=estoreRetail_steps.driver;
+		 String base = driver.getWindowHandle();
+			Set<String> set = driver.getWindowHandles();
+			//driver.switchTo().window(base).close();
+			estoreRetail_steps.driver.switchTo().window((String) set.toArray()[1]);
+			
+	}
+	public void closeTabTnC(){
+		WebDriver driver=estoreRetail_steps.driver;
+		 String base = driver.getWindowHandle();
+			Set<String> set = driver.getWindowHandles();
+			//driver.switchTo().window(base).close();
+			
+			//driver.switchTo().window((String) set.toArray()[1]).close();
+			driver.switchTo().window(base);
+	}
 
 }

@@ -9,6 +9,8 @@ import com.base.Base;
 import com.pageObjects.HomePgObject;
 import com.pageObjects.ProductPgObject;
 import com.pageObjects.ReferrerdetailPgObject;
+import com.pageObjects.RegPageFiller;
+import com.pageObjects.RegistrationPgObject;
 import com.pageObjects.ShoppingcartPgObject;
 
 import cucumber.api.java.en.Given;
@@ -24,6 +26,8 @@ public class estoreRetail_steps {
 	ReferrerdetailPgObject referrerdetailPgObject;
 	ProductPgObject productPgObject;
 	ShoppingcartPgObject shoppingcartPgObject;
+	RegistrationPgObject registrationPgObject;
+	RegPageFiller regPageFiller;
 	public estoreRetail_steps (Base base){
 		this.base = base;
 		this.driver=base.getDriver();
@@ -337,7 +341,7 @@ public class estoreRetail_steps {
 	public void user_clicks_on_delete_product_button(String item) throws Throwable {
 		shoppingcartPgObject= new ShoppingcartPgObject();
 		shoppingcartPgObject.deleteItem(Integer.parseInt(item));
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 	}
 
 @When("^user clicks on empty cart button$")
@@ -377,7 +381,7 @@ public void shopping_cart_radio_button_is_highlighted(String src) throws Throwab
 @When("^enter the qty for each product \"([^\"]*)\" , \"([^\"]*)\"$")
 public void enter_the_qty_for_each_product(String item, String qty) throws Throwable {
 	shoppingcartPgObject.selectQTY(Integer.parseInt(item), qty);
-    
+    Thread.sleep(5000);
 }
 
 @Then("^verify Price change \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\"$")
@@ -385,6 +389,55 @@ public void verify_Price_change(String item, String price, String qty) throws Th
 	Assert.assertEquals("Validate Price", qty+" x "+price+".00",shoppingcartPgObject.getPrice(Integer.parseInt(item)));
 	
     
+}
+@Given("^user agree on T&Cs$")
+public void user_agree_on_T_Cs() throws Throwable {
+	shoppingcartPgObject= new ShoppingcartPgObject();   
+	shoppingcartPgObject.acceptAgreement();
+}
+
+@When("^Click on T&C link$")
+public void click_on_T_C_link() throws Throwable {
+	/*shoppingcartPgObject.clickTandClink();
+	Thread.sleep(5000);
+	new TabCatcher().setBaseTabTnC();
+	Assert.assertEquals("T&C Lick Popup validation", "https://portal.qnet.net/eStore4/pma.aspx?", driver.getCurrentUrl());
+	new TabCatcher().closeTabTnC();*/
+}
+
+@When("^user select USD as currency$")
+public void user_select_USD_as_currency() throws Throwable {
+	shoppingcartPgObject.clickUSD();
+}
+
+@Then("^Click on Checkout botton$")
+public void click_on_Checkout_botton() throws Throwable {
+	shoppingcartPgObject.clickCheckOut();
+}
+@Given("^user should be able to see purchasing path of e store top corner of the page \"([^\"]*)\"$")
+public void user_should_be_able_to_see_purchasing_path_of_e_store_top_corner_of_the_page(String src) throws Throwable {
+	registrationPgObject=new RegistrationPgObject();
+	Assert.assertEquals("Registration Radio Btn Validation", src, registrationPgObject.getRegRadiobtn());
+}
+
+@Given("^user fill all the mandatory fields \"([^\"]*)\"$")
+public void user_fill_all_the_mandatory_fields(String type) throws Throwable {
+	regPageFiller=new RegPageFiller();
+	registrationPgObject=new RegistrationPgObject();
+	regPageFiller.regPageForm(type, registrationPgObject, base);
+}
+
+@When("^user should be checked check boxes$")
+public void user_should_be_checked_check_boxes() throws Throwable {
+	registrationPgObject.clickCheck1();
+	registrationPgObject.clickCheck2();
+	registrationPgObject.clickCheck3();
+	
+}
+
+@Then("^enable confirm bottom$")
+public void enable_confirm_bottom() throws Throwable {
+	registrationPgObject.clickConfirm();
 }
 
 

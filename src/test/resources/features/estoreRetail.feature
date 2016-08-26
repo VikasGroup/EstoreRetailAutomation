@@ -221,3 +221,27 @@ Examples:
 |item|prodName|qty|price|src|
 |1|HomePure Alkaline Stick|2|85|images/EN/navretEN_03.jpg|
 |2|REAL Water Lifestyle Super Combo|2|1,360|images/EN/navretEN_03.jpg|
+
+@Reg
+Scenario: ES_029
+Given user agree on T&Cs
+When Click on T&C link
+And user select USD as currency 
+Then Click on Checkout botton
+
+@Reg
+Scenario Outline: ES_035
+Given user should be able to see purchasing path of e store top corner of the page "<src>"
+Examples:
+|src|
+|images/EN/navretEN_04.jpg|
+
+@Reg
+Scenario Outline: ES_036
+Given user fill all the mandatory fields "<type>"
+When user should be checked check boxes
+Then enable confirm bottom
+Examples:
+|type|
+|invalid|
+|valid|

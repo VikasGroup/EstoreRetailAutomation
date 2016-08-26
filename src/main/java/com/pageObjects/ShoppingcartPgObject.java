@@ -19,7 +19,7 @@ public class ShoppingcartPgObject {
  public WebElement TandC_link = driver.findElement(By.xpath(".//*[@id='hypPMA']"));
  public WebElement ryFoun_link = driver.findElement(By.xpath(".//*[@id='pnlRFDonation']/table/tbody/tr/td[1]/span/label/a"));
  public WebElement add_btn = driver.findElement(By.xpath(".//*[@id='cmdShop']"));
- public WebElement empty_btn = driver.findElement(By.xpath(".//*[@id='cmdSave']"));
+
  public WebElement check_btn = driver.findElement(By.xpath(".//*[@id='cmdConfirm']"));
  //public WebElement rpp_text = driver.findElement(By.xpath(".//*[@id='pnlAutoShip']/span/label"));
  
@@ -39,9 +39,14 @@ public class ShoppingcartPgObject {
 	 WebElement qty = (driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_tbQuantity")));
 	 return qty.getText();
  }
+ public void clickUSD(){
+	 WebElement usd=driver.findElement(By.id("rblChooseCurrency_0"));
+	 usd.click();
+ }
+ 
  public String getPrice(int i){
 	 i=i+1;
-	 WebElement price = (driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_lblPrice")));
+	 WebElement price = (driver.findElement(By.id("dlProductCategoryContainer_ctl03_dgProductCategory_ctl0"+i+"_lblPrice")));
 	 return price.getText();
  }
  public void deleteItem(int i){
@@ -56,10 +61,10 @@ public class ShoppingcartPgObject {
  
  public void selectQTY(int i,String value) throws InterruptedException{
 	 i=i+1;
-	 WebElement qty = (driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_tbQuantity")));
+	 WebElement qty = (driver.findElement(By.id("dlProductCategoryContainer_ctl03_dgProductCategory_ctl0"+i+"_tbQuantity")));
 	 qty.clear();
 	qty.sendKeys(value);
-	WebElement price = (driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_lblPrice")));
+	WebElement price = (driver.findElement(By.id("dlProductCategoryContainer_ctl03_dgProductCategory_ctl0"+i+"_lblPrice")));
 	 price.click();
 
 	Thread.sleep(5000);
@@ -80,13 +85,14 @@ public class ShoppingcartPgObject {
   TandC_link.click();
  }
  public void clickEmpty(){
+ WebElement empty_btn = driver.findElement(By.id("cmdSave"));
  empty_btn.click(); 
  }
  
  public void clickAdd(){
   add_btn.click();
  }
- public void clickCheck(){
+ public void clickCheckOut(){
   check_btn.click();
  }
  public String validateChkBtn(){
