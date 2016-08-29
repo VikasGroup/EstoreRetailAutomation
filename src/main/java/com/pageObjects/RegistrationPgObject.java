@@ -57,9 +57,7 @@ public class RegistrationPgObject {
 	 WebElement rePwd_txt  = webDriver.findElement(By.xpath(".//*[@id='txtPassword2']"));
 	 WebElement yes_btn  = webDriver.findElement(By.xpath(".//*[@id='rbtnRegistrationSubscriptionOption_0']"));
 	 WebElement no_btn  = webDriver.findElement(By.xpath(".//*[@id='rbtnRegistrationSubscriptionOption_1']"));
-	 WebElement check1_check  = webDriver.findElement(By.xpath(".//*[@id='chkQuestionaire1']"));
-	 WebElement check2_check  = webDriver.findElement(By.xpath(".//*[@id='chkQuestionaire2']"));
-	 WebElement check3_check  = webDriver.findElement(By.xpath(".//*[@id='cbWORLDCheckBox01']"));
+	
 	 WebElement comPol_click  = webDriver.findElement(By.xpath(".//*[@id='lblWORLDCheckBox01']/a/b"));
 	 
 	 WebElement cancel_btn  = webDriver.findElement(By.xpath(".//*[@id='cmdCancel']"));
@@ -202,12 +200,15 @@ public class RegistrationPgObject {
 			no_btn.click();
 		}
 	 public void clickCheck1(){
+		 WebElement check1_check  = webDriver.findElement(By.id("chkQuestionaire1"));
 			check1_check.click();
 		}
 	 public void clickCheck2(){
+		 WebElement check2_check  = webDriver.findElement(By.id("chkQuestionaire2"));
 			check2_check.click();
 		}
 	 public void clickCheck3(){
+		 WebElement check3_check  = webDriver.findElement(By.id("cbWORLDCheckBox01"));
 			check3_check.click();
 		}
 	 public void clickComPol(){

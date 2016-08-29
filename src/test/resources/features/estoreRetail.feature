@@ -245,3 +245,29 @@ Examples:
 |type|
 |invalid|
 |valid|
+
+@Reg
+Scenario Outline: ES_032
+Given user directs to the checkout page "<url>"
+When  checkout radio button is highlighted
+And User verify the diliver details name 
+And email
+And address
+And city
+And zip
+And counrty
+And phone
+Then user verify on countinue button
+And cancel button
+Examples:
+|url|
+|https://portal.qnet.net/eStore4/confirmorder.aspx|
+
+@Reg
+Scenario: ES_033
+Given user verify the sub total
+When user select the dilivery option
+Then user verify the total amount to pay
+And If user select Euro, veryfy the total euro amount
+And user click on countinue button
+

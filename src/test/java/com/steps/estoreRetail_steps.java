@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 import com.base.Base;
+import com.pageObjects.CheckOutPgObject;
 import com.pageObjects.HomePgObject;
 import com.pageObjects.ProductPgObject;
 import com.pageObjects.ReferrerdetailPgObject;
@@ -27,6 +28,7 @@ public class estoreRetail_steps {
 	ProductPgObject productPgObject;
 	ShoppingcartPgObject shoppingcartPgObject;
 	RegistrationPgObject registrationPgObject;
+	CheckOutPgObject checkOutPgObject;
 	RegPageFiller regPageFiller;
 	public estoreRetail_steps (Base base){
 		this.base = base;
@@ -89,7 +91,7 @@ public class estoreRetail_steps {
 	@Then("^user should be direct to the home page again \"([^\"]*)\"$")
 	public void user_should_be_direct_to_the_home_page_again(String url) throws Throwable {
 	    Assert.assertEquals("Home Page Validation", url,driver.getCurrentUrl());
-	    Thread.sleep(5000);
+	    Thread.sleep(10000);
 	}
 
 	@Given("^user click on the Shop button$")
@@ -140,7 +142,7 @@ public class estoreRetail_steps {
 	public void user_can_be_change_the_language(String droplang) throws Throwable {
 	   referrerdetailPgObject=new ReferrerdetailPgObject();
 	   referrerdetailPgObject.setLanguage(droplang);
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 	}
 
 	@When("^user can be view page content  with corresponding language \"([^\"]*)\"$")
@@ -166,7 +168,7 @@ public class estoreRetail_steps {
 	public void user_should_be_able_to_select_any_country_in_WP_through_the_country_drop_down_list(String country) throws Throwable {
 		referrerdetailPgObject=new ReferrerdetailPgObject();
 		referrerdetailPgObject.setCountry(country);
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 	}
 	@Given("^user select the available country through country drop down list\\. \"([^\"]*)\"$")
 	public void user_select_the_available_country_through_country_drop_down_list(String country) throws Throwable {
@@ -219,7 +221,7 @@ public class estoreRetail_steps {
 	@When("^user select the preferred language from dropdown \"([^\"]*)\"$")
 	public void user_select_the_preferred_language_from_dropdown(String language) throws Throwable {
 		productPgObject.setLanguage(language);
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 	}
 
 	@When("^products radio button is highlighted \"([^\"]*)\"$")
@@ -263,12 +265,12 @@ public class estoreRetail_steps {
 	@Then("^click on search button$")
 	public void click_on_search_button() throws Throwable {
 		productPgObject.clicksearch(); 
-		 Thread.sleep(5000);
+		 Thread.sleep(10000);
 	}
 	@Then("^Validate error message \"([^\"]*)\"$")
 	public void validate_error_message(String msg) throws Throwable {
 	   Assert.assertEquals("Error message validation", msg, productPgObject.getErrorMsg());
-	   Thread.sleep(5000);
+	   Thread.sleep(10000);
 	}
 
 
@@ -289,7 +291,7 @@ public class estoreRetail_steps {
 	@When("^click on searchbutton$")
 	public void click_on_searchbutton() throws Throwable {
 		productPgObject.clicksearch();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 	}
 	
 
@@ -334,7 +336,7 @@ public class estoreRetail_steps {
 	public void user_can_click_on_add_to_cart_button() throws Throwable {
 		productPgObject=new ProductPgObject();
 		productPgObject.addcart_btn();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 	}
 
 	@Given("^user clicks on delete product button \"([^\"]*)\"$")
@@ -381,7 +383,7 @@ public void shopping_cart_radio_button_is_highlighted(String src) throws Throwab
 @When("^enter the qty for each product \"([^\"]*)\" , \"([^\"]*)\"$")
 public void enter_the_qty_for_each_product(String item, String qty) throws Throwable {
 	shoppingcartPgObject.selectQTY(Integer.parseInt(item), qty);
-    Thread.sleep(5000);
+    Thread.sleep(10000);
 }
 
 @Then("^verify Price change \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\"$")
@@ -399,7 +401,7 @@ public void user_agree_on_T_Cs() throws Throwable {
 @When("^Click on T&C link$")
 public void click_on_T_C_link() throws Throwable {
 	/*shoppingcartPgObject.clickTandClink();
-	Thread.sleep(5000);
+	Thread.sleep(10000);
 	new TabCatcher().setBaseTabTnC();
 	Assert.assertEquals("T&C Lick Popup validation", "https://portal.qnet.net/eStore4/pma.aspx?", driver.getCurrentUrl());
 	new TabCatcher().closeTabTnC();*/
@@ -425,6 +427,7 @@ public void user_fill_all_the_mandatory_fields(String type) throws Throwable {
 	regPageFiller=new RegPageFiller();
 	registrationPgObject=new RegistrationPgObject();
 	regPageFiller.regPageForm(type, registrationPgObject, base);
+	Thread.sleep(10000);
 }
 
 @When("^user should be checked check boxes$")
@@ -438,7 +441,101 @@ public void user_should_be_checked_check_boxes() throws Throwable {
 @Then("^enable confirm bottom$")
 public void enable_confirm_bottom() throws Throwable {
 	registrationPgObject.clickConfirm();
+	Thread.sleep(10000);
+}
+@Given("^user directs to the checkout page \"([^\"]*)\"$")
+public void user_directs_to_the_checkout_page(String url) throws Throwable {
+    Assert.assertEquals("CheckOut page validation", url, driver.getCurrentUrl());
+    checkOutPgObject=new CheckOutPgObject();
+    
 }
 
+@When("^checkout radio button is highlighted$")
+public void checkout_radio_button_is_highlighted() throws Throwable {
+        
+}
+
+@When("^User verify the diliver details name$")
+public void user_verify_the_diliver_details_name() throws Throwable {
+    Assert.assertEquals("Name validation",checkOutPgObject.getContactname() ,base.propp.getProperty("validfname")+" "+base.propp.getProperty("validlname") );
+    
+}
+
+@When("^email$")
+public void email() throws Throwable {
+	  Assert.assertEquals("Email validation",checkOutPgObject.getEmail() ,base.propp.getProperty("validmail").toUpperCase() );
+	    
+    
+}
+
+@When("^address$")
+public void address() throws Throwable {
+	 Assert.assertEquals("Address validation",checkOutPgObject.getAddress() ,base.propp.getProperty("validaddress").toUpperCase() );
+	    
+    
+}
+
+@When("^city$")
+public void city() throws Throwable {
+	 Assert.assertEquals("City validation",checkOutPgObject.getCity() ,base.propp.getProperty("validtown").toUpperCase() ); 
+}
+
+@When("^zip$")
+public void zip() throws Throwable {
+	 Assert.assertEquals("Zip validation",checkOutPgObject.getCity() ,base.propp.getProperty("validtown") );     
+    
+}
+
+@When("^counrty$")
+public void counrty() throws Throwable {
+	 Assert.assertEquals("Country validation",checkOutPgObject.getCountry() ,"Australia");       
+}
+
+@When("^phone$")
+public void phone() throws Throwable {
+	Assert.assertEquals("Phone validation",checkOutPgObject.getPhoneNo() ,base.propp.getProperty("validtel")); 
+}
+
+@Then("^user verify on countinue button$")
+public void user_verify_on_countinue_button() throws Throwable {
+    
+    
+}
+
+@Then("^cancel button$")
+public void cancel_button() throws Throwable {
+    
+    
+}
+
+@Given("^user verify the sub total$")
+public void user_verify_the_sub_total() throws Throwable {
+	 checkOutPgObject=new CheckOutPgObject();
+    Assert.assertEquals("Verify Subtotal",checkOutPgObject.getSubTotal(2),checkOutPgObject.getTotal(2));
+}
+
+@When("^user select the dilivery option$")
+public void user_select_the_dilivery_option() throws Throwable {
+    
+    
+}
+
+@Then("^user verify the total amount to pay$")
+public void user_verify_the_total_amount_to_pay() throws Throwable {
+	 Assert.assertEquals("Verify Total",checkOutPgObject.getTotalAmout(),Integer.toString(Integer.parseInt(checkOutPgObject.getSubTotal(2))+Integer.parseInt(checkOutPgObject.getShippingAmount())));    
+    
+}
+
+@Then("^If user select Euro, veryfy the total euro amount$")
+public void if_user_select_Euro_veryfy_the_total_euro_amount() throws Throwable {
+    
+    
+}
+
+@Then("^user click on countinue button$")
+public void user_click_on_countinue_button() throws Throwable {
+	checkOutPgObject.clickCountinue();
+    
+}
 
 }
