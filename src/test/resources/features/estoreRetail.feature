@@ -290,4 +290,17 @@ Then click on validatebutton
 And click on Confirm button 
 Examples:
 |num|pin|
-|TEST0000000001|QECTST|
+|TESTING0000008|QECTST|
+
+@Reg
+Scenario Outline: ES_059
+Given user direct to the recipt page "<url>"
+When user view QNET logo
+And user validate username
+And validate residential address
+And validate email add
+Then user  able to see ecard number "<ecard>"
+And user able to see total amount
+Examples:
+|url|ecard|
+|https://portal.qntest.com/eStore/ecreceipt2.aspx|TESTING0000008|

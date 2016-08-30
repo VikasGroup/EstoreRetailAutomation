@@ -11,6 +11,7 @@ import com.pageObjects.EcardPgObject;
 import com.pageObjects.HomePgObject;
 import com.pageObjects.PaymentPgobject;
 import com.pageObjects.ProductPgObject;
+import com.pageObjects.ReciptPgObject;
 import com.pageObjects.ReferrerdetailPgObject;
 import com.pageObjects.RegPageFiller;
 import com.pageObjects.RegistrationPgObject;
@@ -34,6 +35,7 @@ public class estoreRetail_steps {
 	RegPageFiller regPageFiller;
 	PaymentPgobject paymentPgobject;
 	EcardPgObject ecardPgObject;
+	ReciptPgObject reciptPgObject;
 	public estoreRetail_steps (Base base){
 		this.base = base;
 		this.driver=base.getDriver();
@@ -593,5 +595,50 @@ public void click_on_Confirm_button() throws Throwable {
 	ecardPgObject.clickConfirm();
     
 }
+@Given("^user direct to the recipt page \"([^\"]*)\"$")
+public void user_direct_to_the_recipt_page(String url) throws Throwable {
+    Assert.assertEquals("Recipt Page Validation", url, driver.getCurrentUrl());
+    reciptPgObject=new ReciptPgObject();
+}
+
+@When("^user view QNET logo$")
+public void user_view_QNET_logo() throws Throwable {
+    Assert.assertEquals("QNet Logo Validation", "true", reciptPgObject.checkQNET_Logo());
+    
+}
+
+@When("^user validate username$")
+public void user_validate_username() throws Throwable {
+	  Assert.assertEquals("User name Validation", reciptPgObject.getUsername(),base.propp.getProperty("validfname").toUpperCase()+" "+base.propp.getProperty("validlname").toUpperCase());
+	    
+    
+}
+
+@When("^validate residential address$")
+public void validate_residential_address() throws Throwable {
+	 Assert.assertEquals("Address Validation", reciptPgObject.getAddress(),base.propp.getProperty("validaddress").toUpperCase()+" "+base.propp.getProperty("validtown").toUpperCase()+" "+base.propp.getProperty("validcountry"));   
+    
+}
+
+@When("^validate email add$")
+public void validate_email_add() throws Throwable {
+	 Assert.assertEquals("Email Validation", reciptPgObject.getEmail(),base.propp.getProperty("validmail").toUpperCase());   
+	    
+    
+}
+
+@Then("^user  able to see ecard number \"([^\"]*)\"$")
+public void user_able_to_see_ecard_number(String ecardnum) throws Throwable {
+    
+	Assert.assertEquals("ECard Num Validation", reciptPgObject.getEardNo(),ecardnum);   
+	  
+}
+
+@Then("^user able to see total amount$")
+public void user_able_to_see_total_amount() throws Throwable {
+    
+    
+}
+
 
 }
