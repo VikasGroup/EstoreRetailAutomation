@@ -10,11 +10,11 @@ import com.steps.estoreRetail_steps;
 public class HomePgObject {
  WebDriver webDriver   =estoreRetail_steps.driver;
  WebElement QNET_Logo  =webDriver.findElement(By.xpath(".//*[@id='ctl00_hlQNetlogo']/img"));
- WebElement SearchOption  =webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl11_txtSearch']"));
- WebElement LanguageDrpdwn = webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl11_hlLangualge']"));
- WebElement IRLoginbtn   = webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl11_hlLogin']"));
- WebElement Enrolbtn   = webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl11_hlJoinUs']"));
- WebElement Shopbtn   = webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl11_hlShop']"));
+ WebElement SearchOption  =webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl12_txtSearch']"));
+ WebElement LanguageDrpdwn = webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl12_hlLangualge']"));
+ WebElement IRLoginbtn   = webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl12_hlLogin']"));
+ WebElement Enrolbtn   = webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl12_hlJoinUs']"));
+ WebElement Shopbtn   = webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl12_hlShop']"));
  WebElement Footer      = webDriver.findElement(By.xpath(".//*[@id='aspnetForm']/div[4]/div[2]"));
  WebElement countinueShopbtn = webDriver.findElement(By.xpath(".//*[@id='myModal2']/p[2]/a[1]"));
  WebElement Exitbtn   = webDriver.findElement(By.xpath(".//*[@id='myModal2']/p[2]/a[2]"));
@@ -40,7 +40,7 @@ public class HomePgObject {
  
  
  public String check_LanguageDrpdwn(){
-  WebElement LanguageDrpdwn=(webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl11_hlLangualge']")));
+  WebElement LanguageDrpdwn=(webDriver.findElement(By.xpath(".//*[@id='ctl00_ctl12_hlLangualge']")));
   if(LanguageDrpdwn.isDisplayed()){
 	   return "true";
 	  }else

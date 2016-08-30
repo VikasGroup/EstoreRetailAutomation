@@ -13,7 +13,7 @@ And user should be able to see corresponding footer bottom of the page
 
 Examples:
 |url|
-|http://www.qnet.net/|
+|http://demo.qntest.com/|
 
 @Reg
 Scenario Outline: ES03
@@ -23,7 +23,7 @@ And user click on the Exit  link
 Then user should be direct to the home page again "<url>"
 Examples:
 |url|
-|http://www.qnet.net/|
+|http://demo.qntest.com/|
 
 @Reg
 Scenario Outline: ES02
@@ -33,7 +33,7 @@ And user click on the continue to shop link
 Then user should be direct to the verify referrer detail page "<page_url>"
 Examples:
 |popup_url|page_url|
-|http://www.qnet.net/|https://portal.qnet.net/eStore4/verifyreferrer.aspx?language=en|
+|http://demo.qntest.com/|https://portal.qntest.com/eStore/verifyreferrer.aspx?language=en|
 
 @Reg
 Scenario Outline: ES05
@@ -81,7 +81,7 @@ And user should be able to click on Check referrer button
 Then user should not direct any page form the existing page "<url>"
 Examples:
 |country|url|
-|AU|https://portal.qnet.net/eStore4/verifyreferrer.aspx?language=en|
+|AU|https://portal.qntest.com/eStore/verifyreferrer.aspx?language=en|
 
 @Reg
 Scenario Outline: ES09
@@ -148,7 +148,7 @@ And verify on Avalability "<avalability>"
 And user select preferred products 
 Examples:
 |type|prodName|image|price|sh|avalability|
-|ProdName|HomePure Alkaline Stick|true|USD 85.00|USD 10.00|true|
+|ProdName|HOMEPURE Eaze Water Filtration System + HOMEPURE Pre-Filter|true|USD 480.00|USD 49.00|true|
 |ProdName|REAL Water Lifestyle Super Combo|true|USD 1,360.00|USD 67.00|true|
 
 @Reg
@@ -181,7 +181,7 @@ And verify on Avalability "<avalability>"
 And user select preferred products 
 Examples:
 |type|prodName|image|price|sh|avalability|
-|ProdName|HomePure Alkaline Stick|true|USD 85.00|USD 10.00|true|
+|ProdName|HOMEPURE Eaze Water Filtration System + HOMEPURE Pre-Filter|true|USD 480.00|USD 49.00|true|
 
 @Reg
 Scenario: ES024
@@ -219,7 +219,7 @@ And enter the qty for each product "<item>" , "<qty>"
 Then verify Price change "<item>" , "<price>" , "<qty>"
 Examples:
 |item|prodName|qty|price|src|
-|1|HomePure Alkaline Stick|2|85|images/EN/navretEN_03.jpg|
+|1|HOMEPURE Eaze Water Filtration System + HOMEPURE Pre-Filter|2|480|images/EN/navretEN_03.jpg|
 |2|REAL Water Lifestyle Super Combo|2|1,360|images/EN/navretEN_03.jpg|
 
 @Reg
@@ -261,7 +261,7 @@ Then user verify on countinue button
 And cancel button
 Examples:
 |url|
-|https://portal.qnet.net/eStore4/confirmorder.aspx|
+|https://portal.qntest.com/eStore/confirmorder.aspx|
 
 @Reg
 Scenario: ES_033

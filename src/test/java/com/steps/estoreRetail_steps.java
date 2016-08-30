@@ -359,7 +359,7 @@ public void user_clicks_on_empty_cart_button() throws Throwable {
 @Then("^directs to the  products page$")
 public void directs_to_the_products_page() throws Throwable {
     
-    Assert.assertEquals("Product Page validation", "https://portal.qnet.net/eStore4/products.aspx?Category=5011000", driver.getCurrentUrl());
+    Assert.assertEquals("Product Page validation", "https://portal.qntest.com/eStore/products.aspx?Category=5011000", driver.getCurrentUrl());
 }
 
 @Given("^User click on Add products button$")
@@ -372,7 +372,7 @@ public void user_click_on_Add_products_button() throws Throwable {
 @Given("^user directs to the Shopping cart page$")
 public void user_directs_to_the_Shopping_cart_page() throws Throwable {
 	shoppingcartPgObject= new ShoppingcartPgObject();
-	Assert.assertEquals("Shoppingcart Page validation", "https://portal.qnet.net/eStore4/shoppingcart.aspx#no-back-button", driver.getCurrentUrl());
+	Assert.assertEquals("Shoppingcart Page validation", "https://portal.qntest.com/eStore/shoppingcart.aspx#no-back-button",driver.getCurrentUrl());
 
     
 }

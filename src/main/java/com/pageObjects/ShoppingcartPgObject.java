@@ -26,17 +26,17 @@ public class ShoppingcartPgObject {
 
  public String getProdName(int i){
 	 i=i+1;
-	 WebElement product = driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_lblProdName"));
+	 WebElement product = driver.findElement(By.id("dlProductCategoryContainer_ctl05_dgProductCategory_ctl0"+i+"_lblProdName"));
 	 return product.getText();
  }
  public String getRPP(int i){
 	 i=i+1;
-	 WebElement rppf = (driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_ddlRepeatProduct")));
+	 WebElement rppf = (driver.findElement(By.id("dlProductCategoryContainer_ctl05_dgProductCategory_ctl0"+i+"_ddlRepeatProduct")));
 	 return rppf.getText();
  }
  public String getQTY(int i){
 	 i=i+1;
-	 WebElement qty = (driver.findElement(By.id("dlProductCategoryContainer_ctl01_dgProductCategory_ctl0"+i+"_tbQuantity")));
+	 WebElement qty = (driver.findElement(By.id("dlProductCategoryContainer_ctl05_dgProductCategory_ctl0"+i+"_tbQuantity")));
 	 return qty.getText();
  }
  public void clickUSD(){
@@ -46,12 +46,12 @@ public class ShoppingcartPgObject {
  
  public String getPrice(int i){
 	 i=i+1;
-	 WebElement price = (driver.findElement(By.id("dlProductCategoryContainer_ctl03_dgProductCategory_ctl0"+i+"_lblPrice")));
+	 WebElement price = (driver.findElement(By.id("dlProductCategoryContainer_ctl05_dgProductCategory_ctl0"+i+"_lblPrice")));
 	 return price.getText();
  }
  public void deleteItem(int i){
 	 i=i+1;
-	 WebElement delete = (driver.findElement(By.id("dlProductCategoryContainer_ctl03_dgProductCategory_ctl0"+i+"_lbtnDelete")));
+	 WebElement delete = (driver.findElement(By.id("dlProductCategoryContainer_ctl05_dgProductCategory_ctl0"+i+"_lbtnDelete")));
 	delete.click();
  }
  public String getShoppingCartRadiobtn(){
@@ -61,10 +61,10 @@ public class ShoppingcartPgObject {
  
  public void selectQTY(int i,String value) throws InterruptedException{
 	 i=i+1;
-	 WebElement qty = (driver.findElement(By.id("dlProductCategoryContainer_ctl03_dgProductCategory_ctl0"+i+"_tbQuantity")));
+	 WebElement qty = (driver.findElement(By.id("dlProductCategoryContainer_ctl05_dgProductCategory_ctl0"+i+"_tbQuantity")));
 	 qty.clear();
 	qty.sendKeys(value);
-	WebElement price = (driver.findElement(By.id("dlProductCategoryContainer_ctl03_dgProductCategory_ctl0"+i+"_lblPrice")));
+	WebElement price = (driver.findElement(By.id("dlProductCategoryContainer_ctl05_dgProductCategory_ctl0"+i+"_lblPrice")));
 	 price.click();
 
 	Thread.sleep(5000);
