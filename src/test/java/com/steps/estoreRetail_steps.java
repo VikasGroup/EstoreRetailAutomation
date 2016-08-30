@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver;
 
 import com.base.Base;
 import com.pageObjects.CheckOutPgObject;
+import com.pageObjects.EcardPgObject;
 import com.pageObjects.HomePgObject;
+import com.pageObjects.PaymentPgobject;
 import com.pageObjects.ProductPgObject;
 import com.pageObjects.ReferrerdetailPgObject;
 import com.pageObjects.RegPageFiller;
@@ -30,6 +32,8 @@ public class estoreRetail_steps {
 	RegistrationPgObject registrationPgObject;
 	CheckOutPgObject checkOutPgObject;
 	RegPageFiller regPageFiller;
+	PaymentPgobject paymentPgobject;
+	EcardPgObject ecardPgObject;
 	public estoreRetail_steps (Base base){
 		this.base = base;
 		this.driver=base.getDriver();
@@ -457,7 +461,7 @@ public void checkout_radio_button_is_highlighted() throws Throwable {
 
 @When("^User verify the diliver details name$")
 public void user_verify_the_diliver_details_name() throws Throwable {
-    Assert.assertEquals("Name validation",checkOutPgObject.getContactname() ,base.propp.getProperty("validfname")+" "+base.propp.getProperty("validlname") );
+    Assert.assertEquals("Name validation",checkOutPgObject.getContactname() ,base.propp.getProperty("validfname").toUpperCase()+" "+base.propp.getProperty("validlname").toUpperCase());
     
 }
 
@@ -482,7 +486,7 @@ public void city() throws Throwable {
 
 @When("^zip$")
 public void zip() throws Throwable {
-	 Assert.assertEquals("Zip validation",checkOutPgObject.getCity() ,base.propp.getProperty("validtown") );     
+	 Assert.assertEquals("Zip validation",checkOutPgObject.getZipCode() ,base.propp.getProperty("validpost") );     
     
 }
 
@@ -510,7 +514,7 @@ public void cancel_button() throws Throwable {
 
 @Given("^user verify the sub total$")
 public void user_verify_the_sub_total() throws Throwable {
-	 checkOutPgObject=new CheckOutPgObject();
+	 checkOutPgObject =new CheckOutPgObject();
     Assert.assertEquals("Verify Subtotal",checkOutPgObject.getSubTotal(2),checkOutPgObject.getTotal(2));
 }
 
@@ -535,6 +539,58 @@ public void if_user_select_Euro_veryfy_the_total_euro_amount() throws Throwable 
 @Then("^user click on countinue button$")
 public void user_click_on_countinue_button() throws Throwable {
 	checkOutPgObject.clickCountinue();
+    
+}
+@Given("^user select the Ecard as payment gateway$")
+public void user_select_the_Ecard_as_payment_gateway() throws Throwable {
+	paymentPgobject=new PaymentPgobject();
+	paymentPgobject.clickEcard();
+    
+}
+
+@When("^User enter invalid ecard No/ PIN No \"([^\"]*)\" , \"([^\"]*)\"$")
+public void user_enter_invalid_ecard_No_PIN_No(String num, String pin) throws Throwable {
+	ecardPgObject= new EcardPgObject();
+	ecardPgObject.enterEcardNo(num);
+	ecardPgObject.enterEcardPin(pin);
+    
+}
+
+@When("^click on validate button$")
+public void click_on_validate_button() throws Throwable {
+	ecardPgObject.clickValidate();
+	Thread.sleep(1000);
+    
+}
+
+@Then("^validate the error message \"([^\"]*)\"$")
+public void validate_the_error_message(String msg) throws Throwable {
+    Assert.assertEquals("Validate Error Msg", msg, ecardPgObject.printErrorMsg());
+    
+}
+
+@Given("^User enter valid ecard No \"([^\"]*)\"$")
+public void user_enter_valid_ecard_No(String num) throws Throwable {
+	ecardPgObject= new EcardPgObject();
+	ecardPgObject.enterEcardNo(num);
+	
+    
+}
+
+@When("^corresponding PIN No \"([^\"]*)\"$")
+public void corresponding_PIN_No(String pin) throws Throwable {
+	ecardPgObject.enterEcardPin(pin);
+    
+}
+
+@Then("^click on validatebutton$")
+public void click_on_validatebutton() throws Throwable {
+	ecardPgObject.clickValidate();
+}
+
+@Then("^click on Confirm button$")
+public void click_on_Confirm_button() throws Throwable {
+	ecardPgObject.clickConfirm();
     
 }
 

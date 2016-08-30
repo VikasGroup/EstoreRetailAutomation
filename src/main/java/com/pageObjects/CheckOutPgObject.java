@@ -12,20 +12,22 @@ public class CheckOutPgObject {
 
  public WebElement totalAmnt_txt = driver.findElement(By.xpath(".//*[@id='lblTotalAmount']"));
  public WebElement deliveryFee_txt = driver.findElement(By.xpath(".//*[@id='lblDeliverySH']"));
- public WebElement deliAdd_btn = driver.findElement(By.xpath(".//*[@id='chkDel']"));
- public WebElement pickupFee_txt = driver.findElement(By.xpath(".//*[@id='lblPickUpSH']"));
- public WebElement pickup_btn = driver.findElement(By.xpath(".//*[@id='chkHK']"));
- public WebElement pickup_dp = driver.findElement(By.xpath(".//*[@id='drpQatana']"));
+
+// public WebElement pickupFee_txt = driver.findElement(By.xpath(".//*[@id='lblPickUpSH']"));
+ 
  public WebElement countinue_btn = driver.findElement(By.xpath(".//*[@id='cmdOK']"));
  public WebElement cancel_btn = driver.findElement(By.xpath(".//*[@id='cmdCancel']"));
  
  public void clcikDilivery(){
+  WebElement deliAdd_btn = driver.findElement(By.xpath(".//*[@id='chkDel']"));
   deliAdd_btn.click();
  }
  public void clickPickup(){
+   WebElement pickup_btn = driver.findElement(By.xpath(".//*[@id='chkHK']"));
   pickup_btn.click();
  }
  public void selectPickup(String value){
+	 WebElement pickup_dp = driver.findElement(By.xpath(".//*[@id='drpQatana']"));
   Select select_pickup  = new Select(pickup_dp);
   select_pickup.selectByVisibleText(value);
  }
@@ -36,12 +38,13 @@ public class CheckOutPgObject {
   countinue_btn.click();
  }
  public String getTotal(int items){
-	 WebElement [] element=null;
+	 WebElement [] element= new WebElement[5];
 	 int total=0;
 	 for(int i=1;i<=items;i++){
 		 element[i]=driver.findElement(By.id("dgGrid_ctl0"+(i+1)+"_lblSubTotal"));
-		 String totstring=element[i].getText().replace(".00", "");
-		 totstring=element[i].getText().replace(",", "");
+		 String totstring=element[i].getText();
+		 totstring=element[i].getText().replace(".00", "");
+		 totstring=totstring.replace(",", "");
 		total=total+Integer.parseInt(totstring);
 	 }
 	 return Integer.toString(total);

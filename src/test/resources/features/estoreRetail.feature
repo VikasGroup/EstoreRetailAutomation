@@ -271,3 +271,23 @@ Then user verify the total amount to pay
 And If user select Euro, veryfy the total euro amount
 And user click on countinue button
 
+
+@Reg
+Scenario Outline: ES_047
+Given user select the Ecard as payment gateway
+When User enter invalid ecard No/ PIN No "<num>" , "<pin>"
+And click on validate button 
+Then validate the error message "<msg>"
+Examples:
+|num|pin|msg|
+|56156|1111111|Card Status Error eCard No. : 56156|
+
+@Reg
+Scenario Outline: ES_046
+Given User enter valid ecard No "<num>"
+When  corresponding PIN No "<pin>"
+Then click on validatebutton
+And click on Confirm button 
+Examples:
+|num|pin|
+|TEST0000000001|QECTST|

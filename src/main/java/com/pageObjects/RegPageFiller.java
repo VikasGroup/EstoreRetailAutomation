@@ -19,10 +19,10 @@ public void regPageForm(String prex, RegistrationPgObject registrationPgObject,B
   registrationPgObject.enterID(base.propp.getProperty(prex+ "idno"));
   registrationPgObject.enterPWD(base.propp.getProperty(prex+ "pwd"));
   registrationPgObject.enterRepwd(base.propp.getProperty(prex+ "repwd"));
-  registrationPgObject.clickCheck1();
+ /* registrationPgObject.clickCheck1();
   registrationPgObject.clickCheck2();
   registrationPgObject.clickCheck3();
-  registrationPgObject.clickConfirm();
+  registrationPgObject.clickConfirm();*/
  }
 
 }
