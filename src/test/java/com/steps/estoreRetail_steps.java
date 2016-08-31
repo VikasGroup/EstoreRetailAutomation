@@ -403,6 +403,20 @@ public void user_agree_on_T_Cs() throws Throwable {
 	shoppingcartPgObject= new ShoppingcartPgObject();   
 	shoppingcartPgObject.acceptAgreement();
 }
+@Given("^User enter the donation \"([^\"]*)\"$")
+public void user_enter_the_donation(String amount) throws Throwable {
+	shoppingcartPgObject.setDonations(amount);
+}
+
+@Given("^check on Rythem donation$")
+public void check_on_Rythem_donation() throws Throwable {
+	shoppingcartPgObject.clickDonation();
+}
+
+@Given("^click on link \"RYTHM FOUNDATION$")
+public void click_on_link_RYTHM_FOUNDATION() throws Throwable {
+  
+}
 
 @When("^Click on T&C link$")
 public void click_on_T_C_link() throws Throwable {
@@ -412,11 +426,11 @@ public void click_on_T_C_link() throws Throwable {
 	Assert.assertEquals("T&C Lick Popup validation", "https://portal.qnet.net/eStore4/pma.aspx?", driver.getCurrentUrl());
 	new TabCatcher().closeTabTnC();*/
 }
-
-@When("^user select USD as currency$")
-public void user_select_USD_as_currency() throws Throwable {
-	shoppingcartPgObject.clickUSD();
+@When("^user select currency \"([^\"]*)\"$")
+public void user_select_currency(String type) throws Throwable {
+    shoppingcartPgObject.clickUSD(type);
 }
+
 
 @Then("^Click on Checkout botton$")
 public void click_on_Checkout_botton() throws Throwable {
@@ -517,7 +531,7 @@ public void cancel_button() throws Throwable {
 @Given("^user verify the sub total$")
 public void user_verify_the_sub_total() throws Throwable {
 	 checkOutPgObject =new CheckOutPgObject();
-    Assert.assertEquals("Verify Subtotal",checkOutPgObject.getSubTotal(2),checkOutPgObject.getTotal(2));
+    Assert.assertEquals("Verify Subtotal",checkOutPgObject.getSubTotal(2),Integer.toString((Integer.parseInt(checkOutPgObject.getTotal(2))+Integer.parseInt(checkOutPgObject.getDonationAmount(2)))));
 }
 
 @When("^user select the dilivery option$")

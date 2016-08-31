@@ -96,7 +96,7 @@ Given user click on the available link which regarding entered product page
 When should be direct to the product page on same window "<url>"
 Examples:
 |url|
-|https://portal.qnet.net/eStore4/products.aspx?Category=5011000&type=|
+|https://portal.qntest.com/eStore/products.aspx?Category=5011000&type=|
 
 @Reg
 Scenario Outline: ES014.1
@@ -223,12 +223,17 @@ Examples:
 |2|REAL Water Lifestyle Super Combo|2|1,360|images/EN/navretEN_03.jpg|
 
 @Reg
-Scenario: ES_029
+Scenario Outline: ES_029
 Given user agree on T&Cs
+And User enter the donation "<amount>"
+And check on Rythem donation 
+And click on link "RYTHM FOUNDATION
 When Click on T&C link
-And user select USD as currency 
+And user select currency "<type>" 
 Then Click on Checkout botton
-
+Examples:
+|type|amount|
+|EURO|5|
 @Reg
 Scenario Outline: ES_035
 Given user should be able to see purchasing path of e store top corner of the page "<src>"
@@ -290,7 +295,7 @@ Then click on validatebutton
 And click on Confirm button 
 Examples:
 |num|pin|
-|TESTING0000011|QECTST|
+|TESTEUR1234567|QECTST|
 
 @Reg
 Scenario Outline: ES_059
@@ -304,4 +309,4 @@ Then user  able to see ecard number "<ecard>"
 And user able to see total amount
 Examples:
 |url|ecard|src|
-|https://portal.qntest.com/eStore/ecreceipt2.aspx|TESTING0000011|images/EN/navretEN_07.jpg|
+|https://portal.qntest.com/eStore/ecreceipt2.aspx|TESTEUR1234567|images/EN/navretEN_07.jpg|

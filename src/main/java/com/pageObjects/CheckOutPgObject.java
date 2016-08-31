@@ -54,7 +54,13 @@ public WebElement purchasingPathimg=driver.findElement(By.id("Topnav1_imgHeader"
 	 return Integer.toString(total);
  }
  public String getSubTotal(int items){
-	 WebElement sub=driver.findElement(By.id("dgGrid_ctl0"+(items+2)+"_lblFooterSubTotal"));
+	 WebElement sub=driver.findElement(By.id("dgGrid_ctl0"+(items+3)+"_lblFooterSubTotal"));
+	 String tot=sub.getText().replace(".00", "");
+	 tot=tot.replace(",", "");
+	 return tot;
+ }
+ public String getDonationAmount(int items){
+	 WebElement sub=driver.findElement(By.id("dgGrid_ctl0"+(items+2)+"_lblSubTotal"));
 	 String tot=sub.getText().replace(".00", "");
 	 tot=tot.replace(",", "");
 	 return tot;

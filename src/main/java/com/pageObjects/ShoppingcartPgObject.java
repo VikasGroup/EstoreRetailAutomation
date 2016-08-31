@@ -23,7 +23,13 @@ public class ShoppingcartPgObject {
  public WebElement check_btn = driver.findElement(By.xpath(".//*[@id='cmdConfirm']"));
  //public WebElement rpp_text = driver.findElement(By.xpath(".//*[@id='pnlAutoShip']/span/label"));
  
-
+public void setDonations(String value){
+	donation_txt.clear();
+	donation_txt.sendKeys(value);
+}
+public void clickDonation(){
+	donation_check.click();
+}
  public String getProdName(int i){
 	 i=i+1;
 	 WebElement product = driver.findElement(By.id("dlProductCategoryContainer_ctl03_dgProductCategory_ctl0"+i+"_lblProdName"));
@@ -39,9 +45,14 @@ public class ShoppingcartPgObject {
 	 WebElement qty = (driver.findElement(By.id("dlProductCategoryContainer_ctl03_dgProductCategory_ctl0"+i+"_tbQuantity")));
 	 return qty.getText();
  }
- public void clickUSD(){
+ public void clickUSD(String type){
+	 if(type.equals("USD")){
 	 WebElement usd=driver.findElement(By.id("rblChooseCurrency_0"));
 	 usd.click();
+	 }else if(type.equals("EURO")){
+		 WebElement euro=driver.findElement(By.id("rblChooseCurrency_1"));
+		 euro.click();
+		 } 
  }
  
  public String getPrice(int i){
@@ -69,12 +80,8 @@ public class ShoppingcartPgObject {
 
 	Thread.sleep(5000);
 	 }
- public void enterDonation(String value){
-  donation_txt.sendKeys(value);
- }
- public void clickDonation(){
-  donation_check.click();
- }
+
+
  public void clickRythem(){
   ryFoun_link.click();
  }
