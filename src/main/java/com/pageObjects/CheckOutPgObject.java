@@ -1,6 +1,7 @@
 package com.pageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -12,12 +13,15 @@ public class CheckOutPgObject {
 
  public WebElement totalAmnt_txt = driver.findElement(By.xpath(".//*[@id='lblTotalAmount']"));
  public WebElement deliveryFee_txt = driver.findElement(By.xpath(".//*[@id='lblDeliverySH']"));
-
+public WebElement purchasingPathimg=driver.findElement(By.id("Topnav1_imgHeader"));
 // public WebElement pickupFee_txt = driver.findElement(By.xpath(".//*[@id='lblPickUpSH']"));
  
  public WebElement countinue_btn = driver.findElement(By.xpath(".//*[@id='cmdOK']"));
  public WebElement cancel_btn = driver.findElement(By.xpath(".//*[@id='cmdCancel']"));
- 
+ public String checkOutRadiobtn(){
+	  String src = ((JavascriptExecutor)driver).executeScript("return arguments[0].attributes['src'].value;", purchasingPathimg).toString();
+	  return src;
+	 }
  public void clcikDilivery(){
   WebElement deliAdd_btn = driver.findElement(By.xpath(".//*[@id='chkDel']"));
   deliAdd_btn.click();

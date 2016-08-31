@@ -456,9 +456,9 @@ public void user_directs_to_the_checkout_page(String url) throws Throwable {
     
 }
 
-@When("^checkout radio button is highlighted$")
-public void checkout_radio_button_is_highlighted() throws Throwable {
-        
+@When("^checkout radio button is highlighted \"([^\"]*)\"$")
+public void checkout_radio_button_is_highlighted(String src) throws Throwable {
+   Assert.assertEquals("CheckOut radio btn validation", src, checkOutPgObject.checkOutRadiobtn());
 }
 
 @When("^User verify the diliver details name$")
@@ -543,9 +543,15 @@ public void user_click_on_countinue_button() throws Throwable {
 	checkOutPgObject.clickCountinue();
     
 }
+@Given("^Payment radio button is highlighted \"([^\"]*)\"$")
+public void payment_radio_button_is_highlighted(String src) throws Throwable {
+	paymentPgobject=new PaymentPgobject();
+    Assert.assertEquals("Payment Radio Btn Validation", src, paymentPgobject.getCashUimg());
+}
+
 @Given("^user select the Ecard as payment gateway$")
 public void user_select_the_Ecard_as_payment_gateway() throws Throwable {
-	paymentPgobject=new PaymentPgobject();
+	
 	paymentPgobject.clickEcard();
     
 }
@@ -616,7 +622,7 @@ public void user_validate_username() throws Throwable {
 
 @When("^validate residential address$")
 public void validate_residential_address() throws Throwable {
-	 Assert.assertEquals("Address Validation", reciptPgObject.getAddress(),base.propp.getProperty("validaddress").toUpperCase()+" "+base.propp.getProperty("validtown").toUpperCase()+" "+base.propp.getProperty("validcountry"));   
+	 Assert.assertEquals("Address Validation", reciptPgObject.getAddress(),base.propp.getProperty("validaddress").toUpperCase()+" "+base.propp.getProperty("validtown").toUpperCase()+" "+base.propp.getProperty("validpost")+" "+base.propp.getProperty("validcountry"));   
     
 }
 
@@ -638,6 +644,10 @@ public void user_able_to_see_ecard_number(String ecardnum) throws Throwable {
 public void user_able_to_see_total_amount() throws Throwable {
     
     
+}
+@Given("^Recepit radio button is highlighted \"([^\"]*)\"$")
+public void recepit_radio_button_is_highlighted(String src) throws Throwable {
+   Assert.assertEquals("Recepit radio button validation", src, src);
 }
 
 

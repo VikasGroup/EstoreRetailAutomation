@@ -96,7 +96,7 @@ Given user click on the available link which regarding entered product page
 When should be direct to the product page on same window "<url>"
 Examples:
 |url|
-|https://portal.qnet.net/eStore4/products.aspx?Category=5011000&type=#|
+|https://portal.qnet.net/eStore4/products.aspx?Category=5011000&type=|
 
 @Reg
 Scenario Outline: ES014.1
@@ -245,11 +245,10 @@ Examples:
 |type|
 |invalid|
 |valid|
-
 @Reg
 Scenario Outline: ES_032
 Given user directs to the checkout page "<url>"
-When  checkout radio button is highlighted
+When  checkout radio button is highlighted "<src>"
 And User verify the diliver details name 
 And email
 And address
@@ -260,8 +259,8 @@ And phone
 Then user verify on countinue button
 And cancel button
 Examples:
-|url|
-|https://portal.qntest.com/eStore/confirmorder.aspx|
+|url|src|
+|https://portal.qntest.com/eStore/confirmorder.aspx|images/EN/navretEN_05.jpg|
 
 @Reg
 Scenario: ES_033
@@ -274,13 +273,14 @@ And user click on countinue button
 
 @Reg
 Scenario Outline: ES_047
-Given user select the Ecard as payment gateway
+Given Payment radio button is highlighted "<src>"
+And user select the Ecard as payment gateway
 When User enter invalid ecard No/ PIN No "<num>" , "<pin>"
 And click on validate button 
 Then validate the error message "<msg>"
 Examples:
-|num|pin|msg|
-|56156|1111111|Card Status Error eCard No. : 56156|
+|num|pin|msg|src|
+|56156|1111111|Card Status Error eCard No. : 56156|images/EN/navretEN_06.jpg|
 
 @Reg
 Scenario Outline: ES_046
@@ -290,11 +290,12 @@ Then click on validatebutton
 And click on Confirm button 
 Examples:
 |num|pin|
-|TESTING0000008|QECTST|
+|TESTING0000011|QECTST|
 
 @Reg
 Scenario Outline: ES_059
 Given user direct to the recipt page "<url>"
+And  Recepit radio button is highlighted "<src>"
 When user view QNET logo
 And user validate username
 And validate residential address
@@ -302,5 +303,5 @@ And validate email add
 Then user  able to see ecard number "<ecard>"
 And user able to see total amount
 Examples:
-|url|ecard|
-|https://portal.qntest.com/eStore/ecreceipt2.aspx|TESTING0000008|
+|url|ecard|src|
+|https://portal.qntest.com/eStore/ecreceipt2.aspx|TESTING0000011|images/EN/navretEN_07.jpg|
