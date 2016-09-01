@@ -174,7 +174,7 @@ public class estoreRetail_steps {
 	public void user_should_be_able_to_select_any_country_in_WP_through_the_country_drop_down_list(String country) throws Throwable {
 		referrerdetailPgObject=new ReferrerdetailPgObject();
 		referrerdetailPgObject.setCountry(country);
-		Thread.sleep(10000);
+		Thread.sleep(2000);
 	}
 	@Given("^user select the available country through country drop down list\\. \"([^\"]*)\"$")
 	public void user_select_the_available_country_through_country_drop_down_list(String country) throws Throwable {
