@@ -241,9 +241,11 @@ Examples:
 |src|
 |images/EN/navretEN_04.jpg|
 
+
 @Reg
 Scenario Outline: ES_036
 Given user fill all the mandatory fields "<type>"
+And user should be displayed Shipping Address category in disabled mode default loading the page
 When user should be checked check boxes
 Then enable confirm bottom
 Examples:

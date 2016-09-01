@@ -147,6 +147,13 @@ public class RegistrationPgObject {
 		 shipAdd_check.clear();
 			shipAdd_check.click();
 		}
+	 public String checkShipCheck(){
+		 if(shipAdd_check.isSelected()){
+			 return "true";
+		 }else{
+			 return "false";
+		}
+	 }
 	 public  void enterContPerson(String value){
 		 conPerson_txt.clear();
 			conPerson_txt.sendKeys(value);

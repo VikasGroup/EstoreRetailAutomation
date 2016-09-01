@@ -442,12 +442,22 @@ public void user_should_be_able_to_see_purchasing_path_of_e_store_top_corner_of_
 	Assert.assertEquals("Registration Radio Btn Validation", src, registrationPgObject.getRegRadiobtn());
 }
 
+@Given("^user click on cancel button$")
+public void user_click_on_cancel_button() throws Throwable {
+	registrationPgObject=new RegistrationPgObject();
+	//registrationPgObject.clickCancel();
+	//new TabCatcher().setTab();
+}
 @Given("^user fill all the mandatory fields \"([^\"]*)\"$")
 public void user_fill_all_the_mandatory_fields(String type) throws Throwable {
 	regPageFiller=new RegPageFiller();
 	registrationPgObject=new RegistrationPgObject();
 	regPageFiller.regPageForm(type, registrationPgObject, base);
 	Thread.sleep(10000);
+}
+@Given("^user should be displayed Shipping Address category in disabled mode default loading the page$")
+public void user_should_be_displayed_Shipping_Address_category_in_disabled_mode_default_loading_the_page() throws Throwable {
+ Assert.assertEquals("Shipping check box validation","true", registrationPgObject.checkShipCheck());
 }
 
 @When("^user should be checked check boxes$")

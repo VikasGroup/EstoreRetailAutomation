@@ -24,6 +24,9 @@ public class TabCatcher {
 				driver.switchTo().window((String) set.toArray()[0]).close();
 			}*/
 			//driver.switchTo().window((String) set.toArray()[1]).close();
+			System.out.println(driver.switchTo().window((String) set.toArray()[0]).getCurrentUrl());
+			System.out.println("11111111"+driver.switchTo().window((String) set.toArray()[1]).getCurrentUrl());			
+			//driver.switchTo().window((String) set.toArray()[1]);
 			driver.switchTo().window(base);
 	}
 	public void setBaseTab(){
@@ -39,7 +42,7 @@ public class TabCatcher {
 			}else{
 				driver.switchTo().window((String) set.toArray()[0]).close();
 			}*/
-			driver.switchTo().window(base).close();
+			//driver.switchTo().window(base).close();
 			driver.switchTo().window((String) set.toArray()[1]);
 			
 	}
